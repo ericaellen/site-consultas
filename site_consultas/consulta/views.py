@@ -9,13 +9,14 @@ def index(request):
     html = ""
     html += "<h1>Lista de Consultas</h1>"
     html += "<table border='1' cellpadding='8' cellspacing='0'>"
-    html += "<thead><tr><th>ID</th><th>Data e Hora</th><th>Ações</th></tr></thead>"
+    html += "<thead><tr><th>ID</th><th>Data e Hora</th><th>Status</th><th>Ações</th></tr></thead>"
     html += "<tbody>"
 
     for consulta in consultas:
         html += f"<tr>"
         html += f"<td>{consulta.id}</td>"
-        html += f"<td>{consulta.dataHora}</td>"
+        html += f"<td>{consulta.dataHora.strftime('%d/%m/%Y %H:%M')}</td>"
+        html += f"<td>{consulta.get_status_display()}</td>"
         html += f"<td>"
         html += f"<a href='/consulta/{consulta.id}/'>Detalhar</a> | "
         html += f"<a href='/consulta/edit/{consulta.id}/'>Editar</a> | "
@@ -46,13 +47,14 @@ def toList(request):
     html = ""
     html += "<h1>Lista de Consultas</h1>"
     html += "<table border='1' cellpadding='8' cellspacing='0'>"
-    html += "<thead><tr><th>ID</th><th>Data e Hora</th><th>Ações</th></tr></thead>"
+    html += "<thead><tr><th>ID</th><th>Data e Hora</th><th>Status</th><th>Ações</th></tr></thead>"
     html += "<tbody>"
 
     for consulta in consultas:
         html += f"<tr>"
         html += f"<td>{consulta.id}</td>"
-        html += f"<td>{consulta.dataHora}</td>"
+        html += f"<td>{consulta.dataHora.strftime('%d/%m/%Y %H:%M')}</td>"
+        html += f"<td>{consulta.get_status_display()}</td>"
         html += f"<td>"
         html += f"<a href='/consulta/{consulta.id}/'>Detalhar</a> | "
         html += f"<a href='/consulta/edit/{consulta.id}/'>Editar</a> | "
