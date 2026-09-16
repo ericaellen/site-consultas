@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data e Hora</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consulta in consultas %}
+        <tr>
+            <td>{{ consulta.id }}</td>
+            <td>{{ consulta.dataHora|date:'d/m/Y H:i' }}</td>
+            <td>{{ consulta.get_status_display }}</td>
+            <td>
+                <a href="/consulta/{{ consulta.id }}/">Detalhar</a>
+                <a href="/consulta/edit/{{ consulta.id }}/">Editar</a>
+                <a href="/consulta/delete/{{ consulta.id }}/">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

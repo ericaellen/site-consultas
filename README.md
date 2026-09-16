@@ -5,4 +5,9 @@
 *Disciplina: Web I*
 *Prof.: Carlos Anderson*
 
-Meu projeto será um sistema web de consultas médicas. Por enquanto, fiz um "crude" de pessoa e consultas.
+Data: 16/09/2026
+Meu projeto será um sistema web de consultas médicas.
+Realizei para a atividade de hoje: 
+- Instalei um template Bootstrap para o sistema;
+- Segmentei o template, deixando o header e o footer no `base.html` e o conteúdo nas páginas específicas;
+- Configurei os arquivos estáticos, as URLs e as views para utilizar os templates Django.
