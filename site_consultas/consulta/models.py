@@ -1,4 +1,6 @@
-from django.db.models import Model, CharField, DateTimeField
+from django.db.models import Model, CharField, DateTimeField, ForeignKey, PROTECT
+from pessoa.models import Pessoa
+from medico.models import Medico
 
 # Create your models here.
 
@@ -12,3 +14,6 @@ class Consulta(Model):
     ]
 
     status = CharField(max_length=20, choices=STATUS_CHOICES)
+
+    pessoa = ForeignKey(Pessoa, on_delete=PROTECT)
+    medico = ForeignKey(Medico, on_delete=PROTECT)

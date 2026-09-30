@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #apps
     'pessoa.apps.PessoaConfig',
     'consulta'
+    'medico'
 ]
 
 MIDDLEWARE = [
