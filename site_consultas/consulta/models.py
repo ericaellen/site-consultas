@@ -15,5 +15,5 @@ class Consulta(Model):
 
     status = CharField(max_length=20, choices=STATUS_CHOICES)
 
-    pessoa = ForeignKey(Pessoa, on_delete=PROTECT)
-    medico = ForeignKey(Medico, on_delete=PROTECT)
+    pessoa = ForeignKey(Pessoa, on_delete=PROTECT, related_name='consultasPaciente')
+    medico = ForeignKey(Medico, on_delete=PROTECT, related_name='consultasMedico')
