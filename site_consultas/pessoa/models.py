@@ -1,7 +1,9 @@
-from django.db.models import Model, CharField, IntegerField, EmailField, DateField
+from django.db.models import Model, CharField, EmailField, DateField
 
 # Create your models here.
 class Pessoa(Model):
     nome = CharField(max_length=100)
     nascimento = DateField()
     cpf = CharField(max_length=11)
+    telefone = CharField(max_length=15, default= "S/N")
+    email = EmailField(unique=True)
