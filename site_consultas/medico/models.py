@@ -5,8 +5,11 @@ from pessoa.models import Pessoa
 class Especialidade(Model):
     nome = CharField(max_length=100)
 
+    def __str__(self):
+        return self.nome
+
 class Medico(Pessoa):
-    crm = CharField(max_length=20)
+    crm = CharField(max_length=20, unique=True)
     especialidades = ManyToManyField(
         Especialidade, #aqui foi criada a relação de medico com especialidade
         through='MedicoEspecialidade', #o trough me da o controle dessa tabela pelo model
