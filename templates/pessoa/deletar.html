@@ -2,6 +2,16 @@
 
 {% block content %}
 <div class="container pt-4">
-    Apagando a pessoa de id {{ id }}!
+    <h1>Excluir pessoa</h1>
+    {% if erro %}
+    <p>{{ erro }}</p>
+    {% else %}
+    <p>Tem certeza de que deseja excluir "{{ pessoa.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar exclusão</button>
+    </form>
+    {% endif %}
+    <p><a href="/pessoa/">Voltar para a lista</a></p>
 </div>
 {% endblock %}

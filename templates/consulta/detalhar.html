@@ -2,6 +2,32 @@
 
 {% block content %}
 <div class="container pt-4">
-    Detalhando a consulta de id {{ id }}!
+    <h1>Detalhes da consulta</h1>
+    <p><strong>ID:</strong> {{ consulta.id }}</p>
+    <p><strong>Data e hora:</strong> {{ consulta.dataHora|date:'d/m/Y H:i' }}</p>
+    <p><strong>Status:</strong> {{ consulta.get_status_display }}</p>
+    <h2>Pessoa</h2>
+    <p><strong>Nome:</strong> {{ consulta.pessoa.nome }}</p>
+    <p><strong>Nascimento:</strong> {{ consulta.pessoa.nascimento|date:'d/m/Y' }}</p>
+    <p><strong>CPF:</strong> {{ consulta.pessoa.cpf }}</p>
+    <p><strong>Telefone:</strong> {{ consulta.pessoa.telefone }}</p>
+    <p><strong>E-mail:</strong> {{ consulta.pessoa.email }}</p>
+    <h2>Médico</h2>
+    <p><strong>Nome:</strong> {{ consulta.medico.nome }}</p>
+    <p><strong>Nascimento:</strong> {{ consulta.medico.nascimento|date:'d/m/Y' }}</p>
+    <p><strong>CPF:</strong> {{ consulta.medico.cpf }}</p>
+    <p><strong>Telefone:</strong> {{ consulta.medico.telefone }}</p>
+    <p><strong>E-mail:</strong> {{ consulta.medico.email }}</p>
+    <p><strong>CRM:</strong> {{ consulta.medico.crm }}</p>
+    <p><strong>Especialidades:</strong></p>
+    <ul>
+        {% for especialidade in consulta.medico.especialidades.all %}
+        <li>{{ especialidade.nome }}</li>
+        {% empty %}
+        <li>Nenhuma especialidade cadastrada.</li>
+        {% endfor %}
+    </ul>
+    <p><a href="/consulta/edit/{{ consulta.id }}/">Editar</a></p>
+    <p><a href="/consulta/">Voltar para a lista</a></p>
 </div>
 {% endblock %}

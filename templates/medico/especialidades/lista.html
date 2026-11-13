@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+    <h1>Especialidades</h1>
+    <p><a href="{% url 'adicionar_especialidade' %}">Adicionar especialidade</a></p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for especialidade in especialidades %}
+            <tr>
+                <td>{{ especialidade.nome }}</td>
+                <td>
+                    <a href="{% url 'detalhar_especialidade' especialidade.id %}">Detalhar</a>
+                    <a href="{% url 'editar_especialidade' especialidade.id %}">Editar</a>
+                    <a href="{% url 'excluir_especialidade' especialidade.id %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">Nenhuma especialidade cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

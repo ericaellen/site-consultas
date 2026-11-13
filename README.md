@@ -5,9 +5,11 @@
 *Disciplina: Web I*
 *Prof.: Carlos Anderson*
 
-Data: 30/09/2026
+Data: 08/10/2026
 Meu projeto será um sistema web de consultas médicas.
-Realizei para a atividade de hoje: 
-- Fiz uma relação 1:N com medico e consulta;
-- Fiz uma relação 1:N com pessoa e consulta;
-- Fiz uma relação N:N com medico e consulta;
+Realizei para a atividade de hoje:
+- Implementei o CRUD completo de pessoas;
+- Implementei o CRUD completo de médicos, incluindo a seleção de especialidades;
+- Implementei o CRUD completo de especialidades;
+- Implementei o CRUD completo de consultas, vinculando cada consulta a uma pessoa e a um médico;
+- Nas telas de detalhe, exibo as informações completas dos registros e seus relacionamentos.

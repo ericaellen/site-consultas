@@ -2,12 +2,16 @@
 
 {% block content %}
 <div class="container pt-4">
+<h1>Consultas</h1>
+<p><a href="/consulta/add/">Adicionar consulta</a></p>
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>ID</th>
             <th>Data e Hora</th>
             <th>Status</th>
+            <th>Pessoa</th>
+            <th>Médico</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -17,11 +21,17 @@
             <td>{{ consulta.id }}</td>
             <td>{{ consulta.dataHora|date:'d/m/Y H:i' }}</td>
             <td>{{ consulta.get_status_display }}</td>
+            <td>{{ consulta.pessoa.nome }}</td>
+            <td>{{ consulta.medico.nome }}</td>
             <td>
                 <a href="/consulta/{{ consulta.id }}/">Detalhar</a>
                 <a href="/consulta/edit/{{ consulta.id }}/">Editar</a>
                 <a href="/consulta/delete/{{ consulta.id }}/">Deletar</a>
             </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">Nenhuma consulta cadastrada.</td>
         </tr>
         {% endfor %}
     </tbody>

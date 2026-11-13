@@ -2,6 +2,14 @@
 
 {% block content %}
 <div class="container pt-4">
-    Detalhando a pessoa de id {{ id }}!
+    <h1>Detalhes da pessoa</h1>
+    <p><strong>ID:</strong> {{ pessoa.id }}</p>
+    <p><strong>Nome:</strong> {{ pessoa.nome }}</p>
+    <p><strong>Nascimento:</strong> {{ pessoa.nascimento|date:'d/m/Y' }}</p>
+    <p><strong>CPF:</strong> {{ pessoa.cpf }}</p>
+    <p><strong>Telefone:</strong> {{ pessoa.telefone }}</p>
+    <p><strong>E-mail:</strong> {{ pessoa.email }}</p>
+    <p><a href="/pessoa/edit/{{ pessoa.id }}/">Editar</a></p>
+    <p><a href="/pessoa/">Voltar para a lista</a></p>
 </div>
 {% endblock %}

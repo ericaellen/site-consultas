@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+    <h1>Médicos</h1>
+    <p><a href="{% url 'adicionar_medico' %}">Adicionar médico</a></p>
+    <p><a href="{% url 'lista_especialidades' %}">Gerenciar especialidades</a></p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CRM</th>
+                <th>Especialidades</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medico in medicos %}
+            <tr>
+                <td>{{ medico.nome }}</td>
+                <td>{{ medico.crm }}</td>
+                <td>
+                    {% for especialidade in medico.especialidades.all %}
+                        {{ especialidade.nome }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        Nenhuma
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'detalhar_medico' medico.id %}">Detalhar</a>
+                    <a href="{% url 'editar_medico' medico.id %}">Editar</a>
+                    <a href="{% url 'excluir_medico' medico.id %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum médico cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

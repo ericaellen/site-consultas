@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+    <h1>Excluir médico</h1>
+    {% if erro %}
+    <p>{{ erro }}</p>
+    {% else %}
+    <p>Tem certeza de que deseja excluir o médico "{{ medico.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar exclusão</button>
+    </form>
+    {% endif %}
+    <p><a href="{% url 'lista_medicos' %}">Voltar para a lista</a></p>
+</div>
+{% endblock %}

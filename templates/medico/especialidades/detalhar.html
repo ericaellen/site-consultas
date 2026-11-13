@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+    <h1>Detalhes da especialidade</h1>
+    <p><strong>Nome:</strong> {{ especialidade.nome }}</p>
+    <p><a href="{% url 'editar_especialidade' especialidade.id %}">Editar</a></p>
+    <p><a href="{% url 'lista_especialidades' %}">Voltar para a lista</a></p>
+</div>
+{% endblock %}

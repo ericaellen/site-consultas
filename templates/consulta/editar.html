@@ -2,6 +2,12 @@
 
 {% block content %}
 <div class="container pt-4">
-    Editando consulta de id {{ id }}!
+    <h1>{{ titulo|default:'Editar consulta' }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    <p><a href="/consulta/">Voltar para a lista</a></p>
 </div>
 {% endblock %}
