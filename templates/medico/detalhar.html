@@ -17,7 +17,7 @@
         <li>Nenhuma especialidade cadastrada.</li>
         {% endfor %}
     </ul>
-    <p><a href="{% url 'editar_medico' medico.id %}">Editar</a></p>
-    <p><a href="{% url 'lista_medicos' %}">Voltar para a lista</a></p>
+    <p><a href="{% url 'medico:editar_medico' medico.id %}">Editar</a></p>
+    <p><a href="{% url 'medico:lista_medicos' %}">Voltar para a lista</a></p>
 </div>
 {% endblock %}

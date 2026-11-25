@@ -3,8 +3,8 @@
 {% block content %}
 <div class="container pt-4">
     <h1>Médicos</h1>
-    <p><a href="{% url 'adicionar_medico' %}">Adicionar médico</a></p>
-    <p><a href="{% url 'lista_especialidades' %}">Gerenciar especialidades</a></p>
+    <p><a href="{% url 'medico:adicionar_medico' %}">Adicionar médico</a></p>
+    <p><a href="{% url 'medico:lista_especialidades' %}">Gerenciar especialidades</a></p>
 
     <table class="table table-bordered">
         <thead>
@@ -28,9 +28,9 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{% url 'detalhar_medico' medico.id %}">Detalhar</a>
-                    <a href="{% url 'editar_medico' medico.id %}">Editar</a>
-                    <a href="{% url 'excluir_medico' medico.id %}">Excluir</a>
+                    <a href="{% url 'medico:detalhar_medico' medico.id %}">Detalhar</a>
+                    <a href="{% url 'medico:editar_medico' medico.id %}">Editar</a>
+                    <a href="{% url 'medico:excluir_medico' medico.id %}">Excluir</a>
                 </td>
             </tr>
             {% empty %}

@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import EspecialidadeForm, MedicoForm
 from .models import Especialidade, Medico
 
@@ -16,7 +16,7 @@ def adicionar_especialidade(request):
         if form.is_valid():
             form.save()
             # Depois de cadastrar, volta para a lista de especialidades.
-            return redirect('lista_especialidades')
+            return redirect('medico:lista_especialidades')
     else:
         # Em uma visita normal (GET), exibe um formulário vazio.
         form = EspecialidadeForm()
@@ -30,21 +30,21 @@ def adicionar_especialidade(request):
 
 def detalhar_especialidade(request, id):
     # Busca a especialidade pelo ID recebido na URL.
-    especialidade = Especialidade.objects.get(id=id)
+    especialidade = get_object_or_404(Especialidade, id=id)
     # Envia o registro encontrado ao template para exibir seus dados.
     return render(request, 'medico/especialidades/detalhar.html', {'especialidade': especialidade})
 
 
 def editar_especialidade(request, id):
     # Busca o registro que será alterado.
-    especialidade = Especialidade.objects.get(id=id)
+    especialidade = get_object_or_404(Especialidade, id=id)
     if request.method == 'POST':
         # Associa os dados enviados ao registro existente, em vez de criar outro.
         form = EspecialidadeForm(request.POST, instance=especialidade)
         if form.is_valid():
             form.save()
             # Depois de editar, volta para a lista.
-            return redirect('lista_especialidades')
+            return redirect('medico:lista_especialidades')
     else:
         # No GET, mostra o formulário preenchido com os dados atuais.
         form = EspecialidadeForm(instance=especialidade)
@@ -59,11 +59,11 @@ def editar_especialidade(request, id):
 
 def excluir_especialidade(request, id):
     # Busca o registro que será exibido na página de confirmação.
-    especialidade = Especialidade.objects.get(id=id)
+    especialidade = get_object_or_404(Especialidade, id=id)
     if request.method == 'POST':
         # Só exclui depois que a confirmação é enviada pelo formulário.
         especialidade.delete()
-        return redirect('lista_especialidades')
+        return redirect('medico:lista_especialidades')
 
     # No GET, apenas mostra a confirmação; ainda não exclui o registro.
     return render(request, 'medico/especialidades/excluir.html', {'especialidade': especialidade})
@@ -83,7 +83,7 @@ def adicionar_medico(request):
             medico = form.save()
             # Salva também as especialidades escolhidas no formulário.
             medico.especialidades.set(form.cleaned_data['especialidades'])
-            return redirect('lista_medicos')
+            return redirect('medico:lista_medicos')
     else:
         # Ao abrir a página, mostra um formulário vazio.
         form = MedicoForm()
@@ -96,13 +96,13 @@ def adicionar_medico(request):
 
 def detalhar_medico(request, id):
     # Busca o médico pelo ID e envia seus dados ao template.
-    medico = Medico.objects.get(id=id)
+    medico = get_object_or_404(Medico, id=id)
     return render(request, 'medico/detalhar.html', {'medico': medico})
 
 
 def editar_medico(request, id):
     # Busca o médico que será editado.
-    medico = Medico.objects.get(id=id)
+    medico = get_object_or_404(Medico, id=id)
     if request.method == 'POST':
         # Usa a instância existente para atualizar, em vez de criar outro médico.
         form = MedicoForm(request.POST, instance=medico)
@@ -110,7 +110,7 @@ def editar_medico(request, id):
             medico = form.save()
             # Atualiza as especialidades associadas ao médico.
             medico.especialidades.set(form.cleaned_data['especialidades'])
-            return redirect('lista_medicos')
+            return redirect('medico:lista_medicos')
     else:
         # Preenche o formulário com os dados atuais do médico.
         form = MedicoForm(instance=medico)
@@ -124,7 +124,7 @@ def editar_medico(request, id):
 
 def excluir_medico(request, id):
     # Busca o médico que será exibido na confirmação.
-    medico = Medico.objects.get(id=id)
+    medico = get_object_or_404(Medico, id=id)
     if request.method == 'POST':
         # Consulta protege médicos vinculados, então avisa antes de tentar excluir.
         if medico.consultasMedico.exists():
@@ -133,7 +133,7 @@ def excluir_medico(request, id):
                 'erro': 'Não é possível excluir este médico porque ele possui consultas.'
             })
         medico.delete()
-        return redirect('lista_medicos')
+        return redirect('medico:lista_medicos')
 
     # No GET, só mostra a confirmação; ainda não exclui.
     return render(request, 'medico/excluir.html', {'medico': medico})
