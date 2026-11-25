@@ -17,3 +17,9 @@ class Consulta(Model):
 
     pessoa = ForeignKey(Pessoa, on_delete=PROTECT, related_name='consultasPaciente')
     medico = ForeignKey(Medico, on_delete=PROTECT, related_name='consultasMedico')
+
+    def __str__(self):
+        return (
+            f'Consulta de {self.pessoa.nome} com {self.medico.nome} '
+            f'em {self.dataHora:%d/%m/%Y %H:%M}'
+        )

@@ -30,6 +30,12 @@ class ConsultaViewsTests(TestCase):
             medico=self.medico,
         )
 
+    def test_consulta_string_representation(self):
+        self.assertEqual(
+            str(self.consulta),
+            'Consulta de Paciente de teste com Médico de teste em 01/01/2025 10:00',
+        )
+
     def test_consulta_pages_render_with_namespaced_urls(self):
         paths = (
             reverse('consulta:lista_consultas'),
