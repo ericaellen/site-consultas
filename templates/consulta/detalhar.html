@@ -27,7 +27,7 @@
         <li>Nenhuma especialidade cadastrada.</li>
         {% endfor %}
     </ul>
-    <p><a href="/consulta/edit/{{ consulta.id }}/">Editar</a></p>
-    <p><a href="/consulta/">Voltar para a lista</a></p>
+    <p><a href="{% url 'consulta:editar_consulta' consulta.id %}">Editar</a></p>
+    <p><a href="{% url 'consulta:lista_consultas' %}">Voltar para a lista</a></p>
 </div>
 {% endblock %}

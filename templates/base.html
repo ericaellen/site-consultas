@@ -21,7 +21,7 @@
     <header class="header trans_400">
         <div class="header_content d-flex flex-row align-items-center jusity-content-start trans_400">
             <div class="logo">
-                <a href="/consulta/">
+                <a href="{% url 'consulta:lista_consultas' %}">
                     <div>Dr<span>PRO</span></div>
                     <div>Plastic Surgery</div>
                 </a>
@@ -32,14 +32,14 @@
                     <li><a href="/">Início</a></li>
                     <li><a href="#">Sobre nós</a></li>
                     <li><a href="#">Serviços</a></li>
-                    <li><a href="/consulta/">Consultas</a></li>
+                    <li><a href="{% url 'consulta:lista_consultas' %}">Consultas</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
             <div class="header_extra d-flex flex-row align-items-center justify-content-end ml-auto">
                 <div class="work_hours">Mo - Sat: 8:00am - 9:00pm</div>
                 <div class="header_phone">+34 586 778 8892</div>
-                <div class="button button_1 header_button"><a href="/consulta/add/">Faça um agendamento</a></div>
+                <div class="button button_1 header_button"><a href="{% url 'consulta:adicionar_consulta' %}">Faça um agendamento</a></div>
                 <div class="social header_social">
                     <ul class="d-flex flex-row align-items-center justify-content-start">
                         <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
@@ -60,14 +60,14 @@
                 <li><a href="/">Início</a></li>
                 <li><a href="#">Sobre nós</a></li>
                 <li><a href="#">Serviços</a></li>
-                <li><a href="/consulta/">Consultas</a></li>
+                <li><a href="{% url 'consulta:lista_consultas' %}">Consultas</a></li>
                 <li><a href="#">Contato</a></li>
             </ul>
         </nav>
         <div class="menu_extra">
             <div class="menu_link">Mo - Sat: 8:00am - 9:00pm</div>
             <div class="menu_link">+34 586 778 8892</div>
-            <div class="menu_link"><a href="/consulta/add/">Faça um agendamento</a></div>
+            <div class="menu_link"><a href="{% url 'consulta:adicionar_consulta' %}">Faça um agendamento</a></div>
         </div>
         <div class="social menu_social">
             <ul class="d-flex flex-row align-items-center justify-content-start">
@@ -89,7 +89,7 @@
                     <div class="col-lg-3 footer_col">
                         <div class="footer_about">
                             <div class="footer_logo">
-                                <a href="/consulta/"><div>Dr<span>PRO</span></div><div>Plastic Surgery</div></a>
+                                <a href="{% url 'consulta:lista_consultas' %}"><div>Dr<span>PRO</span></div><div>Plastic Surgery</div></a>
                             </div>
                             <div class="footer_about_text">
                                 <p>Nulla facilisi. Nulla egestas vel lacus sed interdum. Sed mollis, orci eleme ntum eleifend tempor, nunc libero porttitor tellus.</p>
@@ -134,7 +134,7 @@
                 <div class="row"><div class="col">
                     <div class="footer_bar_content d-flex flex-md-row flex-column align-items-md-center justify-content-start">
                         <div class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
-                        <nav class="footer_nav ml-md-auto"><ul class="d-flex flex-row align-items-center justify-content-start"><li><a href="/">Início</a></li><li><a href="#">Sobre nós</a></li><li><a href="#">Serviços</a></li><li><a href="/consulta/">Consultas</a></li><li><a href="#">Contato</a></li></ul></nav>
+                        <nav class="footer_nav ml-md-auto"><ul class="d-flex flex-row align-items-center justify-content-start"><li><a href="/">Início</a></li><li><a href="#">Sobre nós</a></li><li><a href="#">Serviços</a></li><li><a href="{% url 'consulta:lista_consultas' %}">Consultas</a></li><li><a href="#">Contato</a></li></ul></nav>
                     </div>
                 </div></div>
             </div>

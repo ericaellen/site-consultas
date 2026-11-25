@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container pt-4">
 <h1>Consultas</h1>
-<p><a href="/consulta/add/">Adicionar consulta</a></p>
+<p><a href="{% url 'consulta:adicionar_consulta' %}">Adicionar consulta</a></p>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -24,9 +24,9 @@
             <td>{{ consulta.pessoa.nome }}</td>
             <td>{{ consulta.medico.nome }}</td>
             <td>
-                <a href="/consulta/{{ consulta.id }}/">Detalhar</a>
-                <a href="/consulta/edit/{{ consulta.id }}/">Editar</a>
-                <a href="/consulta/delete/{{ consulta.id }}/">Deletar</a>
+                <a href="{% url 'consulta:detalhar_consulta' consulta.id %}">Detalhar</a>
+                <a href="{% url 'consulta:editar_consulta' consulta.id %}">Editar</a>
+                <a href="{% url 'consulta:excluir_consulta' consulta.id %}">Excluir</a>
             </td>
         </tr>
         {% empty %}
