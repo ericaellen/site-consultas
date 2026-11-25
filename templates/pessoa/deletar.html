@@ -12,6 +12,6 @@
         <button type="submit">Confirmar exclusão</button>
     </form>
     {% endif %}
-    <p><a href="/pessoa/">Voltar para a lista</a></p>
+    <p><a href="{% url 'pessoa:lista_pessoas' %}">Voltar para a lista</a></p>
 </div>
 {% endblock %}

@@ -1,33 +1,27 @@
 from django.db.models.deletion import ProtectedError
-from django.http import HttpResponseNotFound
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import PessoaForm
 from .models import Pessoa
 
 
-def index(request):
+def lista_pessoas(request):
     # Busca todas as pessoas para mostrar na lista.
     pessoas = Pessoa.objects.all()
     return render(request, 'pessoa/lista.html', {'pessoas': pessoas})
 
 
-def detail(request, id):
-    # Busca a pessoa pelo ID; se não existir, responde com página não encontrada.
-    try:
-        pessoa = Pessoa.objects.get(id=id)
-    except Pessoa.DoesNotExist:
-        return HttpResponseNotFound('Pessoa não encontrada.')
-
+def detalhar_pessoa(request, id):
+    pessoa = get_object_or_404(Pessoa, id=id)
     return render(request, 'pessoa/detalhar.html', {'pessoa': pessoa})
 
 
-def add(request):
+def adicionar_pessoa(request):
     # No envio, valida os dados antes de salvar a pessoa.
     if request.method == 'POST':
         form = PessoaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/pessoa/')
+            return redirect('pessoa:lista_pessoas')
     else:
         # Ao abrir a página, mostra um formulário vazio.
         form = PessoaForm()
@@ -38,19 +32,14 @@ def add(request):
     })
 
 
-def edit(request, id):
-    # Busca a pessoa que será editada.
-    try:
-        pessoa = Pessoa.objects.get(id=id)
-    except Pessoa.DoesNotExist:
-        return HttpResponseNotFound('Pessoa não encontrada.')
-
+def editar_pessoa(request, id):
+    pessoa = get_object_or_404(Pessoa, id=id)
     if request.method == 'POST':
         # Usa a pessoa existente para atualizar, em vez de criar outra.
         form = PessoaForm(request.POST, instance=pessoa)
         if form.is_valid():
             form.save()
-            return redirect('/pessoa/')
+            return redirect('pessoa:lista_pessoas')
     else:
         # Preenche o formulário com os dados atuais da pessoa.
         form = PessoaForm(instance=pessoa)
@@ -61,13 +50,8 @@ def edit(request, id):
     })
 
 
-def delete(request, id):
-    # Busca a pessoa que será mostrada na confirmação.
-    try:
-        pessoa = Pessoa.objects.get(id=id)
-    except Pessoa.DoesNotExist:
-        return HttpResponseNotFound('Pessoa não encontrada.')
-
+def excluir_pessoa(request, id):
+    pessoa = get_object_or_404(Pessoa, id=id)
     if request.method == 'POST':
         try:
             pessoa.delete()
@@ -77,13 +61,7 @@ def delete(request, id):
                 'pessoa': pessoa,
                 'erro': 'Não é possível excluir esta pessoa porque há consultas vinculadas.'
             })
-        return redirect('/pessoa/')
+        return redirect('pessoa:lista_pessoas')
 
     # No GET, só mostra a confirmação; ainda não exclui.
     return render(request, 'pessoa/deletar.html', {'pessoa': pessoa})
-
-
-def toList(request):
-    # Mantém a rota /list/ exibindo a mesma lista de pessoas.
-    pessoas = Pessoa.objects.all()
-    return render(request, 'pessoa/lista.html', {'pessoas': pessoas})

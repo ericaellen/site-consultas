@@ -8,6 +8,6 @@
         {{ form.as_p }}
         <button type="submit">Salvar</button>
     </form>
-    <p><a href="/pessoa/">Voltar para a lista</a></p>
+    <p><a href="{% url 'pessoa:lista_pessoas' %}">Voltar para a lista</a></p>
 </div>
 {% endblock %}

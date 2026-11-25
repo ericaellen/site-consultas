@@ -9,7 +9,7 @@
     <p><strong>CPF:</strong> {{ pessoa.cpf }}</p>
     <p><strong>Telefone:</strong> {{ pessoa.telefone }}</p>
     <p><strong>E-mail:</strong> {{ pessoa.email }}</p>
-    <p><a href="/pessoa/edit/{{ pessoa.id }}/">Editar</a></p>
-    <p><a href="/pessoa/">Voltar para a lista</a></p>
+    <p><a href="{% url 'pessoa:editar_pessoa' pessoa.id %}">Editar</a></p>
+    <p><a href="{% url 'pessoa:lista_pessoas' %}">Voltar para a lista</a></p>
 </div>
 {% endblock %}

@@ -2,11 +2,12 @@ from django.urls import path
 
 from . import views
 
+app_name = 'pessoa'
+
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:id>/', views.detail, name='detail'),
-    path('add/', views.add, name='add'),
-    path('edit/<int:id>/', views.edit, name='edit'),
-    path('delete/<int:id>/', views.delete, name='delete'),
-    path('list/', views.toList, name='list'),
+    path('', views.lista_pessoas, name='lista_pessoas'),
+    path('adicionar/', views.adicionar_pessoa, name='adicionar_pessoa'),
+    path('<int:id>/', views.detalhar_pessoa, name='detalhar_pessoa'),
+    path('<int:id>/editar/', views.editar_pessoa, name='editar_pessoa'),
+    path('<int:id>/excluir/', views.excluir_pessoa, name='excluir_pessoa'),
 ]

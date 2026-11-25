@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container pt-4">
 <h1>Pessoas</h1>
-<p><a href="/pessoa/add/">Adicionar pessoa</a></p>
+<p><a href="{% url 'pessoa:adicionar_pessoa' %}">Adicionar pessoa</a></p>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -22,9 +22,9 @@
             <td>{{ pessoa.cpf }}</td>
             <td>{{ pessoa.telefone }}</td>
             <td>
-                <a href="/pessoa/{{ pessoa.id }}/">Detalhar</a>
-                <a href="/pessoa/edit/{{ pessoa.id }}/">Editar</a>
-                <a href="/pessoa/delete/{{ pessoa.id }}/">Deletar</a>
+                <a href="{% url 'pessoa:detalhar_pessoa' pessoa.id %}">Detalhar</a>
+                <a href="{% url 'pessoa:editar_pessoa' pessoa.id %}">Editar</a>
+                <a href="{% url 'pessoa:excluir_pessoa' pessoa.id %}">Excluir</a>
             </td>
         </tr>
         {% empty %}
