@@ -7,6 +7,7 @@ class Pessoa(Model):
     cpf = CharField(max_length=11, unique=True)
     telefone = CharField(max_length=15, default= "S/N")
     email = EmailField(unique=True)
+    sexo = CharField(max_length=1)
 
     def __str__(self):
         return self.nome

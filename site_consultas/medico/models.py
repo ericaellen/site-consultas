@@ -13,7 +13,7 @@ class Medico(Pessoa):
     especialidades = ManyToManyField(
         Especialidade, #aqui foi criada a relação de medico com especialidade
         through='MedicoEspecialidade', #o trough me da o controle dessa tabela pelo model
-        related_name='medicos' #como acessarei essa lista de emdicos pela especialidade
+        related_name='medicos' #como acessarei essa lista de medicos pela especialidade
     )
 
 class MedicoEspecialidade(Model):
